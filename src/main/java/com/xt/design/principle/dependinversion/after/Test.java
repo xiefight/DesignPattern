@@ -17,6 +17,18 @@ public class Test {
          */
         geely.study(new FECourse());
         geely.study(new PythonCourse());
+
+
+        //构造器方式注入抽象课程--方式缺陷：geelyConstract对象只能学一个课程，想学其他的，只能新 new ；这种方式在Spring的单例场景中适用
+        GeelyConstract geelyConstract = new GeelyConstract(new JavaCourse());
+        geelyConstract.study();
+
+        //setter方式
+        GeelySetter geelySetter = new GeelySetter();
+        geelySetter.setCourse(new JavaCourse());
+        geelySetter.study();
+        geelySetter.setCourse(new PythonCourse());
+        geelySetter.study();
     }
 
 }
