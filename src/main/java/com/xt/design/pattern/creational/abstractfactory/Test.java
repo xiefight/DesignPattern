@@ -22,5 +22,8 @@ public class Test {
         CourseFactory courseFactory = new JavaCourseFactory();
         Video video = courseFactory.getVideo();
         Article article = courseFactory.getArticle();
+
+        video.produce();
+        article.produce();
     }
 }
