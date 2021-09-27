@@ -1,11 +1,13 @@
 package com.xt.design.pattern.creational.singleton;
 
+import java.io.Serializable;
+
 /**
  * @Description: 饿汉式单例
  * @Author: xietao
  * @Date: 2021-09-25 14:17
  **/
-public class HungrySingleton {
+public class HungrySingleton implements Serializable {
 
     private HungrySingleton(){}
 
@@ -21,6 +23,10 @@ public class HungrySingleton {
     }
     public static HungrySingleton getInstance2(){
         return HUNGRY_SINGLETON2;
+    }
+
+    public Object readResolve(){
+        return HUNGRY_SINGLETON;
     }
 
 }
