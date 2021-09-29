@@ -51,3 +51,16 @@ Thread-0执行了<1>后，直接执行<3>，但是在执行<2>之前，Thread-1�
 1.序列化与反序列化 ObjectOutputStream ObjectInputStream readResolve()
 2.反射破坏，将私有构造器权限打开
 防止反射破坏：在私有构造器中抛出异常，单例构造器禁止反射调用 对HungrySingleton、LazySingletonStaticInner有用，因为这两种方式在类加载时，实例就已经创建好了
+
+>>>枚举单例
+EnumProtect
+1.序列化与反序列化 不能破坏  ObjectInputStream中判断对象是枚举类型时，直接将对象返回，单例内部的其他成员属性也不会变
+2.反射  不能破坏  枚举没有无参构造，即使通过有参构造创建对象，会报Cannot reflectively create enum objects异常
+3.jad工具
+4.枚举实例可以添加方法，但需要在外层定义一个抽象方法，不然外部调用不到
+
+>>>容器单例
+将单例对象放到一个map容器中，HashMap线程不安全，CurrentHashMap线程安全（这种方案），Hashtable线程安全（性能不高）
+
+>>>ThreadLocal线程单例
+不能保证全局唯一，但可以保证线程唯一
